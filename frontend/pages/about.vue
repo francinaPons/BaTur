@@ -1,5 +1,5 @@
 <template>
-  <h1>afskdlfjals</h1>
+  <Profile></Profile>
 </template>
 
 <script>
@@ -8,6 +8,6 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+  @import 'static/css/global.css';
 </style>

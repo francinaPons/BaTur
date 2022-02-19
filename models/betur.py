@@ -5,8 +5,8 @@ from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
 
-class BeturModel(db.Model):
-    __tablename__ = 'beturs'
+class BaturModel(db.Model):
+    __tablename__ = 'baturs'
 
     id = db.Column(db.Integer,primary_key=True, unique=True, nullable=False)
     user_id = db.Column(db.Integer, unique=True, nullable=False)
@@ -46,7 +46,7 @@ class BeturModel(db.Model):
             raise Exception("There was a problem  saving on database")
 
     def find_by_user_id(self, user_id):
-        res = [i.json() for i in BeturModel.query.filter_by(user_id=user_id).all()]
+        res = [i.json() for i in BaturModel.query.filter_by(user_id=user_id).all()]
         return res
 
 

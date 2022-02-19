@@ -189,7 +189,7 @@
               console.log(response)
               if (response) {
                 if (response.status === 200) {
-                  this.items = response.data.beturs;
+                  this.items = response.data.baturs;
                   console.log(this.items)
 
 

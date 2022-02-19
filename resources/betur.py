@@ -1,16 +1,16 @@
 from flask_restful import Resource, Api, reqparse
 
-from models.betur import BeturModel
+from models.batur import BaturModel
 
 
-class Betur(Resource):
+class Batur(Resource):
     def get(self, user_id):
         try:
-            beturs = BeturModel.find_by_user_id(self, user_id)
+            baturs = BaturModel.find_by_user_id(self, user_id)
         except Exception as e:
             print(e)
             return {'message': "Preguntas no encontradas"}, 400
-        return {'beturs': beturs}, 200
+        return {'baturs': baturs}, 200
 
     def post(self, user_id):
         parser = reqparse.RequestParser()  # create parameters parser from request
@@ -39,8 +39,8 @@ class Betur(Resource):
         if data['availability'] == '' or "":
             return {'message': "Se requiere especificar la disponibilidad"}, 400
 
-        betur = BeturModel.save_to_db(self)
-        return {'betur': betur.json()}, 200
+        batur = BaturModel.save_to_db(self)
+        return {'batur': batur.json()}, 200
 
 
 
