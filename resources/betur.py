@@ -1,21 +1,22 @@
 from flask_restful import Resource, Api, reqparse
 
-from models.initialQuestions import InitialQuestionsModel
+from models.betur import BeturModel
 
 
-class InitialQuestions(Resource):
+class Betur(Resource):
     def get(self, user_id):
         try:
-            questions = InitialQuestionsModel.find_by_user_id(self, user_id)
+            beturs = BeturModel.find_by_user_id(self, user_id)
         except Exception as e:
             print(e)
             return {'message': "Preguntas no encontradas"}, 400
-        return {'questions': questions}, 200
+        return {'beturs': beturs}, 200
 
-    def post(self, id=None):
+    def post(self, user_id):
         parser = reqparse.RequestParser()  # create parameters parser from request
 
         # define al input parameters need and its type
+        parser.add_argument('id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('user_id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('host', type=bool, required=True, help="Se requiere especificar si es host")
         parser.add_argument('charge', type=int, required=True, help="Se requiere especificar si se cargan gastos")
@@ -38,8 +39,8 @@ class InitialQuestions(Resource):
         if data['availability'] == '' or "":
             return {'message': "Se requiere especificar la disponibilidad"}, 400
 
-        questions = InitialQuestionsModel.save_to_db(self)
-        return {'questions': questions.json()}, 200
+        betur = BeturModel.save_to_db(self)
+        return {'betur': betur.json()}, 200
 
 
 
