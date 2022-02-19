@@ -65,7 +65,7 @@ export default {
             console.log(response)
             if (response) {
               if (response.status === 200) {
-                this.$router.push('/about')
+                this.$router.push('/nse')
               } else {
                 console.log('resposta:', response.data.data)
               }
@@ -75,17 +75,6 @@ export default {
         this.$router.push('/')
         this.error = "error al iniciar sesion";
       })
-    },
-    getActivities() {
-      console.log("Jaskdljf")
-      const url = 'http://127.0.0.1:80/activity/10'
-      this.$axios.get(url)
-          .then((response) => {
-            if (response) {
-              console.log('response: ')
-            }
-      })
-      this.$router.push('/about')
     }
   }
 }

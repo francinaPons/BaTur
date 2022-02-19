@@ -1,0 +1,88 @@
+.btn-primary{
+    color: #0a084f !important;
+    background-color: #e2b5aa !important;
+    border-color: transparent !important;
+  }
+
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+      background-color: #ead1c9 !important;
+      border-color: transparent !important; /*set the color you want here*/
+  }
+.background_default {
+    background-color: #dce5cf !important;
+}
+
+.table thead th, thead, th, th > div > input {
+    background-color: #eef9f7 !important;
+}
+
+.table thead th, thead, th {
+    padding: 30px 20px 30px 20px;
+}
+
+.nav-item.nav-item.nav-item a {
+    color: #4F7DDE;
+}
+
+.sidebarheadertitle {
+    text-align:left;
+    margin-top:5px;
+    margin-left:26px;
+    margin-bottom:5px;
+}
+
+.sidebarheadertitle > h4 {
+    font-weight:bold;
+}
+
+.sidebarheaderclose {
+    text-align:right;
+    margin-top:7px;
+    margin-right:33px;
+}
+
+/*pagination styles */
+.ownfirstclass {
+    margin-right:10px !important;
+}
+
+.ownprevclass {
+    margin-right:10px !important;
+}
+
+.ownnextclass {
+    margin-right:10px !important;
+}
+
+.ownpageclass {
+    margin-right:10px !important;
+}
+
+.page-item > .page-link {
+    color:#4F7DDE;
+}
+
+
+.ownpagesitems.page-link, .ownpagination.page-link{
+    border-radius: 5px 5px !important;
+}
+
+.ownellipsisclass {
+    margin-right:10px !important;
+}
+
+.ownpagination.dropdown.b-dropdown.float-right.page-link.dropup.btn-group {
+    padding:0px;
+}
+
+.ownpagination.dropdown.b-dropdown.float-right.page-link.dropup.btn-group > button{
+    padding:7px;
+}
+
+.sidebarheaderclose > button:hover, .greyonhover:hover{
+    background-color:rgb(239, 239, 239);
+}
+
+.custom-switch > input[type="checkbox"] {
+    visibility: hidden
+}

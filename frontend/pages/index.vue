@@ -8,4 +8,5 @@ export default {
 }
 </script>
 <style>
+  @import 'static/css/global.css';
 </style>
