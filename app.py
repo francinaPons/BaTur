@@ -7,6 +7,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from checktype import *
 from db import db, secret_key
+from resources.login import Login
 
 app = Flask(__name__)
 app = Flask(__name__,
@@ -49,7 +50,7 @@ def home():
 def main_window():
     return render_template("index.html")
 
-
+api.add_resource(Login, '/login')
 api.add_resource(Accounts, '/account/<string:username>', '/account')
 api.add_resource(Activity, '/activity/<int:id>')
 api.add_resource(ActivityList, '/activities')

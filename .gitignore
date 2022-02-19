@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+*.pyc
+*.pyc
+frontend/package-lock.json
+*.pyc
