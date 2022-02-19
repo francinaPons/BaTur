@@ -20,7 +20,7 @@ class Betur(Resource):
         parser.add_argument('user_id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('host', type=bool, required=True, help="Se requiere especificar si es host")
         parser.add_argument('charge', type=int, required=True, help="Se requiere especificar si se cargan gastos")
-        parser.add_argument('location', type=int, required=True, help="Se requiere especificar la localización")
+        parser.add_argument('location', type=str, required=True, help="Se requiere especificar la localización")
         parser.add_argument('description', type=str, required=True, help="Se requiere especificar una descripción")
         parser.add_argument('availability', type=str, required=True, help="Se requiere especificar la disponibilidad")
 

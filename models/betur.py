@@ -12,7 +12,7 @@ class BeturModel(db.Model):
     user_id = db.Column(db.Integer, unique=True, nullable=False)
     host = db.Column(db.Boolean(), nullable=False)
     charge = db.Column(db.Integer(), nullable=False)
-    location = db.Column(db.Integer(), nullable=False)
+    location = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     availability = db.Column(db.Integer(), nullable=False)
 
