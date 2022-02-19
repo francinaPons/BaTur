@@ -4,7 +4,7 @@ from flask_restful import Resource, Api, reqparse
 from resources.accounts import Accounts, AccountsList
 from resources.activity import Activity, ActivityList
 from resources.batur import Batur
-from resources.cities import CityList
+from resources.cities import CityList, City
 from resources.weather import Weather
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -60,7 +60,8 @@ api.add_resource(Accounts, '/account/<string:username>', '/account')
 api.add_resource(Activity, '/activity/<int:id>')
 api.add_resource(ActivityList, '/activities')
 api.add_resource(AccountsList, '/accounts')
-api.add_resource(CityList, '/cities/<string:lang>')
+api.add_resource(CityList, '/cities')
+api.add_resource(City, '/city/<int:city_id>', '/city/<string:city_name>')
 api.add_resource(Weather, '/weather/<string:region>/<string:date1>/<string:date2>')
 api.add_resource(Batur, '/batur/<int:user_id>')
 

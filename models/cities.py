@@ -14,6 +14,8 @@ class CitiesModel(db.Model):
     def json(self):
         return json.loads(json.dumps(self, default=lambda o: {'id': self.id, 'name': self.name}))
 
+
+
     def find_by_name(name):
         try:
             return CitiesModel.query.filter_by(name=name).first()

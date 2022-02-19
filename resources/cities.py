@@ -3,14 +3,33 @@ from models.cities import CitiesModel
 import requests
 
 API_KEY = 'SAyx0slRJe'
+GUIPUZKOA_ID = 1010
+COUNTRY_ID = 63
+LANG = "es"
+
 
 class CityList(Resource):
-    def get(self, lang, zone_id=None, country_id=None, latitude=None, longitude=None, filter=None, order_by=None):
+
+    def get(self):
         url = 'http://papi.minube.com/cities'
-        params = dict(api_key=API_KEY, lang=lang, zone_id=zone_id, country_id=country_id,
-                      latitude=latitude, longitude=longitude, filter=filter, order_by=order_by)
+        params = dict(api_key=API_KEY, lang=LANG, zone_id=GUIPUZKOA_ID)
         res = requests.get(url, params=params)
-        print(res)
+
+        if res.status_code == 200:
+            return res.json(), 200
+        else:
+            return {"message": res.json()}, res.status_code
+
+
+class City(Resource):
+
+    def get(self, city_id=None, city_name=None):
+        url = 'http://papi.minube.com/cities'
+        params = dict(api_key=API_KEY, lang=LANG, zone_id=GUIPUZKOA_ID, city_id=city_id, filter=city_name)
+        res = requests.get(url, params=params)
+
+        print(res.json()[0])
+
         if res.status_code == 200:
             return res.json(), 200
         else:
