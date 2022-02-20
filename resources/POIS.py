@@ -7,6 +7,21 @@ GUIPUZKOA_ID = 1010
 COUNTRY_ID = 63
 LANG = "es"
 
+class POISCityList(Resource):
+
+    def get(self, city_id):
+        url = 'http://papi.minube.com/pois'
+
+        params = dict(api_key=API_KEY, lang=LANG, zone_id=GUIPUZKOA_ID, country_id=COUNTRY_ID,
+                      city_id=city_id)
+        res = requests.get(url, params=params)
+
+        if res.status_code == 200:
+            return res.json(), 200
+        else:
+            return {"message": res.json()}, res.status_code
+
+
 
 class POISSubcategoryList(Resource):
 
