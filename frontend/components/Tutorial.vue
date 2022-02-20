@@ -9,34 +9,36 @@
           </div>
 
           <Notification v-if="error" :message="error" />
+          <div class="div-1">
+              <b-form-group
+                id="username"
+                label="Usuario"
+                label-for="username"
+                label-cols-md="4"
+                label-size="md"
+                size="md"
+                class="mb-4"
+              >
+                <b-form-input id="username" v-model="username" size="md" />
+              </b-form-group>
 
-          <b-form-group
-            id="username"
-            label="Usuario"
-            label-for="username"
-            label-cols-md="4"
-            label-size="md"
-            size="md"
-            class="mb-4"
-          >
-            <b-form-input id="username" v-model="username" size="md" />
-          </b-form-group>
+              <b-form-group
+                id="password"
+                label="Contraseña"
+                label-for="password"
+                label-cols-md="4"
+                label-size="md"
+                size="md"
+                class="mb-4"
+              >
+                <b-form-input id="password" v-model="password" type="password" size="md" />
+              </b-form-group>
 
-          <b-form-group
-            id="password"
-            label="Contraseña"
-            label-for="password"
-            label-cols-md="4"
-            label-size="md"
-            size="md"
-            class="mb-4"
-          >
-            <b-form-input id="password" v-model="password" type="password" size="md" />
-          </b-form-group>
 
           <b-button variant="primary" @click="login">
             LOGIN
           </b-button>
+          </div>
         </div>
       </div>
     </div>
@@ -130,6 +132,13 @@ export default {
 .toast {
     max-width: 400px !important;
     width: 400px !important;
+}
+
+.div-1 {
+    background-color: #0A084F;
+    color: white;
+    padding: 26px;
+    border-radius: 15px
 }
 
 </style>

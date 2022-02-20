@@ -1,11 +1,21 @@
 <template>
-<div>
-  <b-button variant="primary" @click="ofrecer1">
+<div class="div-1">
+  <div style="margin: 20px;">
+    <div style="padding-bottom: 30px;">
+      <h3>¡Hola!</h3>
+      <h3>¿Qué quieres hacer?</h3>
+    </div>
+
+
+  <b-button variant="primary" @click="ofrecer1" style="height: 100px; font-size: 25px; font-weight: bold";>
     QUIERO OFRECER UN BATUR
   </b-button>
-  <b-button variant="primary" @click="ofrecer1">
+    </div>
+  <div>
+  <b-button variant="primary" @click="ofrecer1" style="height: 100px; font-size: 25px; font-weight: bold">
     QUIERO BUSCAR UN BATUR
   </b-button>
+    </div>
   </div>
 
 </template>
@@ -35,3 +45,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.div-1 {
+    background-color: #0A084F;
+    color: white;
+    padding: 100px;
+    /*height: 500px;*/
+    border-radius: 15px
+}
+</style>
