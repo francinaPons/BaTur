@@ -1,5 +1,5 @@
 <template>
-  <b-img id="marcaImageId" src="~/static/batur.png" />
+  <b-img id="marcaImageId" src="~/static/chat.png" />
 </template>
 
 <script>

@@ -12,7 +12,7 @@
   </b-button>
     </div>
   <div>
-  <b-button variant="primary" @click="ofrecer1" style="height: 100px; font-size: 25px; font-weight: bold">
+  <b-button variant="primary" @click="ofrecer2" style="height: 100px; font-size: 25px; font-weight: bold">
     QUIERO BUSCAR UN BATUR
   </b-button>
     </div>
@@ -45,13 +45,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.div-1 {
-    background-color: #0A084F;
-    color: white;
-    padding: 100px;
-    /*height: 500px;*/
-    border-radius: 15px
-}
-</style>

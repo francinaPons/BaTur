@@ -20,7 +20,7 @@
         <b-button variant="primary" @click="select_options('batur')">Mis Baturs</b-button>
         <b-button variant="primary" @click="select_options('ajustes')">Ajustes</b-button>
         <b-button variant="primary" @click="select_options('chat')">Mis chats</b-button>
-        <b-button variant="primary" >Logout</b-button>
+        <b-button variant="primary" @click="logout">Logout</b-button>
       </b-card>
     </section>
     </b-col>
@@ -56,6 +56,9 @@
         this.getProfile()
       },
       methods: {
+        logout() {
+          this.$router.push('/')
+        },
         getProfile() {
 
           const url = 'http://127.0.0.1:80/accountId/' + this.id_user;
