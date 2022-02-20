@@ -78,6 +78,7 @@ export default {
       respuestaPregunta2text: null,
       respuestaPregunta3: null,
       respuestaPregunta4: null,
+      charge: 0,
 
     }
   },
@@ -101,34 +102,46 @@ export default {
     onClickPregunta4(value){
       this.respuestaPregunta4 = value;
     },
-    ofrecer1() {
-      const url = 'http://127.0.0.1:80/login'
-      this.ofrecer = true;
-      this.initialComponent = false;
-    },
-    buscar() {
-      const url = 'http://127.0.0.1:80/login'
-
-      this.initialComponent = false;
-    },
     terminarBatur(){
-      //TODO: AFEGIR TOTES LES VARS A BBDD
+      if(this.respuestaPregunta1 === 'propina') {
+        this.charge = -1;
+      } else if (this.respuestaPregunta1 === 'no') {
+        this.charge = 0;
+      } else {
+        this.charge = this.respuestaPregunta1
+      }
+
+      const url = 'http://127.0.0.1:80/batur'
+      const params = {
+        user_id: this.user_id,
+        id: this.id,
+        charge: this.charge,
+        location: this.respuestaPregunta2city,
+        description: this.respuestaPregunta2text,
+        availability: this.respuestaPregunta3,
+        subcategory: this.respuestaPregunta4
+      }
+      this.$axios.post(url, params)
+          .then((response) => {
+            console.log(response)
+            if (response) {
+              if (response.status === 200) {
+                console.log("Batur guardado")
+              } else {
+                console.log('resposta:', response.data.data)
+              }
+            }
+          })
+      .catch((err) => {
+        this.$router.push('/')
+        this.error = "error al iniciar sesion";
+      })
+
       this.$router.push('/about')
     },
     goProfile(){
       this.$router.push('/about')
     },
-    getActivities() {
-      console.log("Jaskdljf")
-      const url = 'http://127.0.0.1:80/activity/10'
-      this.$axios.get(url)
-          .then((response) => {
-            if (response) {
-              console.log('response: ')
-            }
-      })
-      this.$router.push('/about')
-    }
   }
 }
 </script>

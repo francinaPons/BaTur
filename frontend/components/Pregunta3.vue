@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3>3/3</h3>
+  <h3>3/4</h3>
   <h1>¿Cúal es tu disponibilidad?</h1>
   <h1>Zein da zure disponibilitatea?</h1>
 
