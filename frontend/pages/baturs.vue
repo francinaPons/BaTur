@@ -182,29 +182,29 @@
       },
 
     methods: {
-      getBarturs() {
+      getBarturs: function () {
         const url = 'http://127.0.0.1:80/batur/1'
         this.$axios.get(url)
-            .then((response) => {
-              console.log(response)
-              if (response) {
-                if (response.status === 200) {
-                  this.items = response.data.baturs;
-                  console.log(this.items)
+          .then((response) => {
+            console.log(response)
+            if (response) {
+              if (response.status === 200) {
+                this.items = response.data.baturs;
+                console.log(this.items)
 
 
-                  console.log("baturssss")
-                } else {
-                  console.log('resposta:', response.data.data)
-                }
+                console.log("baturssss")
+              } else {
+                console.log('resposta:', response.data.data)
               }
-            })
-        .catch((err) => {
-          console.log("error")
-        })
-        }
+            }
+          })
+          .catch((err) => {
+            console.log("error")
+          })
+      }
 
-     },
+    },
     }
 </script>
 
