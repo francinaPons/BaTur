@@ -26,7 +26,6 @@ class Batur(Resource):
 
         data = parser.parse_args()
 
-        data['id'] = 2
         if data['user_id'] == '' or "":
             return {'message': "Se requiere especificar el id del usuario"}, 400
         if data['charge'] == '' or "":
@@ -41,7 +40,10 @@ class Batur(Resource):
             return {'message': "Se requiere especificar la subcategoría"}, 400
 
         print(type(data))
-        batur = BaturModel.save_to_db(self, data)
+        batur = BaturModel(user_id=data['user_id'], charge=data['charge'],
+                           location=data['location'], description=data['description'],
+                            availability=data['availability'], subcategory=data['subcategory'])
+        batur.save_to_db()
         return {'batur': batur.json()}, 200
 
 
