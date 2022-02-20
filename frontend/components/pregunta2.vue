@@ -1,8 +1,15 @@
 <template>
   <div>
     <h3>2/4</h3>
-    <h1>¿Donde selocaliza tu Batur?/Non kokatzen da zure Batur-a?</h1>
-      <b-form-select v-model="selected" :options="options" size="sm" ></b-form-select>
+    <h6>¿Donde selocaliza tu Batur?/Non kokatzen da zure Batur-a?</h6>
+
+    <b-form-select v-model="selected" :options="options" size="sm" @change="getCityId"></b-form-select>
+    <div>
+      <h6>¿Qué punto de interés quieres visitar?/??????</h6>
+    <b-form-select v-model="selected2" v-if="selected" :options="options2" size="sm" ></b-form-select>
+
+    </div>
+
     <h1>Describe brevemente tu Bitur/Deskribatu labur-labur zure Bitur-a</h1>
     <div class="form-group">
 
@@ -33,6 +40,10 @@ export default {
       selected: null,
       options: [
         { value: null, text: 'Selecciona una ciudad' }
+      ],
+      selected2: null,
+      options2: [
+
       ]
     }
   },
@@ -44,7 +55,7 @@ export default {
           if (response) {
             if (response.status === 200) {
               for (let i = 0; i < response.data.length; i++) {
-                console.log(response.data[i])
+                // console.log(response.data[i])
                 this.options.push(response.data[i].city_name)
               }
             } else {
@@ -60,14 +71,54 @@ export default {
     siguiente(){
       if(this.selected !== null && this.review.length <= 250 ){
 
-        this.$emit('respuestaPregunta2city', this.selected)
+        this.$emit('respuestaPregunta2city', this.selected2)
         this.$emit('respuestaPregunta2text', this.review)
 
       }
       //TODO ELSE POP UP NO SELECTED OR TEXT NOT LENGHT
 
       //Todo: si city y texto -> emit
-    }
+      },
+    getPOIs(id){
+       const url = 'http://127.0.0.1:80/POISCITY/' + id
+    this.$axios.get(url)
+        .then((response) => {
+          console.log(response)
+          if (response) {
+            if (response.status === 200) {
+              this.options2 = []
+              for (let i= 0; i < response.data.length; i++) {
+                this.options2.push(response.data[i].name)
+              }
+              console.log(response)
+            } else {
+              console.log('resposta:', response.data.data)
+            }
+          }
+        })
+    .catch((err) => {
+      console.log("error")
+    })
+    },
+      getCityId() {
+
+      const url = 'http://127.0.0.1:80/city/' + this.selected
+    this.$axios.get(url)
+        .then((response) => {
+          console.log(response)
+          if (response) {
+            if (response.status === 200) {
+              console.log(response.data[0].city_id)
+              this.getPOIs(response.data[0].city_id)
+            } else {
+              console.log('resposta:', response.data.data)
+            }
+          }
+        })
+    .catch((err) => {
+      console.log("error")
+    })
+      }
   }
 }
 </script>
