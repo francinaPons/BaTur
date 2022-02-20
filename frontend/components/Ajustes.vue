@@ -39,8 +39,10 @@
 
 <script>
   export default {
+    props: ['id_user'],
     data() {
       return {
+        id_user: this.id_user,
         name: "",
         description: "",
         city: "",
@@ -53,6 +55,9 @@
       }
     },
     mounted() {
+      console.log("afhsjkdf")
+      console.log(this.id_user)
+
       const url = 'http://127.0.0.1:80/cities'
       this.$axios.get(url)
           .then((response) => {
@@ -60,7 +65,6 @@
             if (response) {
               if (response.status === 200) {
                 for (let i = 0; i < response.data.length; i++) {
-                  console.log(response.data[i])
                   this.options.push(response.data[i].city_name)
                 }
               } else {
@@ -74,15 +78,23 @@
   },
     methods:{
       submit() {
-        /*
         const url = 'http://127.0.0.1:80/account'
-        this.$axios.get(url)
+        const params = {
+          name: this.name,
+          city: this.city,
+          description: this.description
+        }
+        this.$axios.put(url, params)
           .then((response) => {
-            console.log(response)
             if (response) {
               if (response.status === 200) {
-                this.items = response.data.baturs;
                 console.log("S'ha guardat correctament")
+                this.city = ""
+                this.options = [
+                  { value: null, text: 'Selecciona una ciudad' }
+                ]
+                this.name = ""
+                this.description = ""
               } else {
                 console.log('resposta:', response.data.data)
               }
@@ -91,7 +103,7 @@
           .catch((err) => {
             console.log("error")
           })
-         */
+
       }
     }
   }
