@@ -13,7 +13,7 @@ class BaturModel(db.Model):
     charge = db.Column(db.Integer(), nullable=False)
     location = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
-    availability = db.Column(db.Integer(), nullable=False)
+    availability = db.Column(db.String(), nullable=False)
     subcategory = db.Column(db.String(), nullable=False)
 
     def __init__(self, id, user_id, charge, location, description, availability, subcategory):
