@@ -16,22 +16,28 @@
           <b>{{ city }}</b>
         </b-card-text>
 
-        <b-button href="/baturs" variant="primary">Ver mis BaTurs</b-button>
-        <b-button variant="primary">Ajustes</b-button>
-        <b-button variant="primary">Mis chats</b-button>
+        <!--<b-button href="/baturs" variant="primary">Ver mis BaTurs</b-button> -->
+        <b-button variant="primary" @click="select_options('batur')">Mis Baturs</b-button>
+        <b-button variant="primary" @click="select_options('ajustes')">Ajustes</b-button>
+        <b-button variant="primary" @click="select_options('chat')">Mis chats</b-button>
+        <b-button variant="primary" >Logout</b-button>
       </b-card>
     </section>
     </b-col>
     <b-col>
-      hola
+      <Baturs v-if="option === 'batur'" ></Baturs>
+      <Ajustes v-if="option === 'ajustes'"></Ajustes>
+      <Chat v-if="option==='chat'"></Chat>
     </b-col>
     </b-row>
 
 </template>
 
 <script>
+    import Baturs from "~/pages/baturs";
     export default {
       name: "Profile",
+      components: {Baturs},
       data: function () {
         return {
           name: "",
@@ -40,6 +46,8 @@
           description: "",
           city: "",
           mail: "",
+          option: null,
+
         }
       },
       mounted() {
@@ -69,6 +77,9 @@
               console.log("error")
             })
         },
+        select_options(option){
+          this.option = option;
+        }
 
       }
     }
