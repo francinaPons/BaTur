@@ -1,10 +1,9 @@
-from flask_restful import Resource, Api, reqparse
-from models.weather import WeatherModel
+from flask_restful import Resource
 import requests
 
 
 class Weather(Resource):
-    def get(self,region, date1, date2):
+    def get(self, date1, date2):
 
         day1 = date1[:2]
         month1 = date1[2:4]
@@ -16,17 +15,17 @@ class Weather(Resource):
 
         final_date = year2 + month2 + day2
 
-        url = 'https://api.sandbox.euskadi.eus/euskalmet/weather/regions/' + region + '/forecast/at/' + year1 + '/'\
+        url = 'https://api.sandbox.euskadi.eus/euskalmet/weather/regions/basque_country/forecast/at/' + year1 + '/'\
               + month1 + '/' + day1 + '/for/'+final_date
-
         print(url)
 
         params = dict(aud="met01.apikey", iss="hackathon", exp="1600000000", version="1.0.0",
                       iat="1600000000", email="racsofernan@gmail.com")
 
         res = requests.get(url, params=params)
-        print(res)
+
         if res.status_code == 200:
-            return res.json(), 200
+            print()
+            return {"message": res.json()['forecastTextByLang']['SPANISH']}, 200
         else:
             return {"message": res.json()}, res.status_code
