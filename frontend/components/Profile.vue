@@ -41,6 +41,7 @@
       data: function () {
         return {
           name: "",
+          id_user: null,
           image: "",
           user_id: 0,
           description: "",
@@ -51,12 +52,13 @@
         }
       },
       mounted() {
+        this.id_user = this.$route.params['data'];
         this.getProfile()
       },
       methods: {
         getProfile() {
 
-          const url = 'http://127.0.0.1:80/accountId/0'
+          const url = 'http://127.0.0.1:80/accountId/' + this.id_user;
           this.$axios.get(url)
             .then((response) => {
               console.log(response)
