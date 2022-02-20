@@ -7,7 +7,7 @@
     </div>
 
 
-  <b-button variant="primary" @click="ofrecer1" style="height: 100px; font-size: 25px; font-weight: bold";>
+  <b-button variant="primary" @click="ofrecer1" style="height: 100px; font-size: 25px; font-weight: bold">
     QUIERO OFRECER UN BATUR
   </b-button>
     </div>
@@ -36,10 +36,10 @@ export default {
   },
   methods: {
     ofrecer1() {
-      const url = 'http://127.0.0.1:80/login'
-      //this.ofrecer = true;
       this.$emit('initialComponent', false)
-      //this.initialComponent = false;
+    },
+    ofrecer2() {
+      this.$router.push('/swipe')
     },
 
   }
