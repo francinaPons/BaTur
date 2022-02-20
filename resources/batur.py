@@ -39,7 +39,8 @@ class Batur(Resource):
         if data['subcategory'] == '' or "":
             return {'message': "Se requiere especificar la subcategoría"}, 400
 
-        print(type(data))
+
+
         batur = BaturModel(user_id=data['user_id'], charge=data['charge'],
                            location=data['location'], description=data['description'],
                             availability=data['availability'], subcategory=data['subcategory'])
