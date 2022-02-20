@@ -26,8 +26,10 @@
     </b-col>
     <b-col>
       <div v-for="values in batur">
+        <hr>
         <div v-for="(name, value) in values">
-          <h6>{{ name }}: {{ value}}</h6>
+          <h6><b>{{ value }}</b>: {{ name}}</h6>
+          <hr>
       </div>
 
       </div>
@@ -56,8 +58,6 @@ import Baturs from "~/pages/baturs";
           decodedStr: '',
           option: null,
           batur: [
-            { message: 'Foo' },
-            { message: 'Bar' }
           ]
         }
       },
@@ -86,13 +86,26 @@ import Baturs from "~/pages/baturs";
             })
         },
         getBatursUser(id) {
-          const url = 'http://127.0.0.1:80/batur/0'
+          let url = 'http://127.0.0.1:80/batur/' + 0
+          if (id) {
+            url = 'http://127.0.0.1:80/batur/' + id
+          }
+
           this.$axios.get(url)
             .then((response) => {
               console.log(response)
               if (response) {
                 if (response.status === 200) {
-                  this.batur = response.data.baturs
+                  for (let i = 0; i < response.data.baturs.length; i++) {
+                    let item = {
+                      "Batur": i,
+                      "Disponibilidad": response.data.baturs[i].availability,
+                      "Precio": response.data.baturs[i].charge,
+                      "Localización": response.data.baturs[i].location,
+                      "Categoria": response.data.baturs[i].category
+                    }
+                    this.batur.push(item)
+                  }
                 } else {
                   console.log('resposta:', response.data.data)
                 }
@@ -108,6 +121,7 @@ import Baturs from "~/pages/baturs";
         siguiente() {
         this.i += 1
         this.currentUser = this.listUsers[this.i]
+          this.batur = []
         this.getBatursUser(this.i)
 
       }
