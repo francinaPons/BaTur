@@ -19,7 +19,7 @@
         <div style="text-align: center">
         <b-button variant="primary" @click="siguiente">Siguiente</b-button>
         <font-awesome-icon :icon="['fas', 'comment']"/>
-          <b-button variant="primary" >Chat</b-button>
+          <b-button variant="primary" @click="goProfile">Chat</b-button>
         </div>
       </b-card>
     </section>
@@ -66,6 +66,18 @@ import Baturs from "~/pages/baturs";
         this.getBatursUser()
       },
       methods: {
+        goProfile() {
+          console.log("okfjlsdf")
+          console.log(this.currentUser.id)
+          let items = {
+            user_id: this.currentUser.id,
+            chat: true
+          }
+          this.$router.push({
+                  name: 'about',
+                  params: {data: items}
+                })
+        },
         getListUsers() {
           const url = 'http://127.0.0.1:80/accounts'
           this.$axios.get(url)
