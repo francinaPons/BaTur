@@ -1,6 +1,9 @@
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
+
+from resources import POIS
+from resources.POIS import POISList, POISSubcategoryList
 from resources.accounts import Accounts, AccountsList, AccountId
 from resources.activity import Activity, ActivityList
 from resources.batur import Batur
@@ -65,6 +68,8 @@ api.add_resource(CityList, '/cities')
 api.add_resource(City, '/city/<int:city_id>', '/city/<string:city_name>')
 api.add_resource(Weather, '/weather/<string:region>/<string:date1>/<string:date2>')
 api.add_resource(Batur, '/batur/<int:user_id>')
+api.add_resource(POISList, '/POIS')
+api.add_resource(POISSubcategoryList, '/POIS/<string:subcategory_id>')
 
 if __name__ == '__main__':
   app.run(debug=True)
