@@ -17,7 +17,7 @@ class BaturModel(db.Model):
     subcategory = db.Column(db.String(), nullable=False)
 
     def __init__(self, user_id, charge, location, description, availability, subcategory):
-        self.id = 0
+
         self.user_id = user_id
         self.charge = charge
         self.location = location
@@ -50,6 +50,7 @@ class BaturModel(db.Model):
         return res
 
 
-
+    def find_last_batur(self):
+        return BaturModel.query.order_by(BaturModel.id.desc()).first()
 
 

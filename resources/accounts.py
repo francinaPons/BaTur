@@ -61,7 +61,7 @@ class Accounts(Resource):
             parser.add_argument('username', type=str)
             parser.add_argument('password', type=str)
             parser.add_argument('is_admin')
-            parser.add_argument('image', type=types.BLOB)
+            parser.add_argument('image', type=str)
             dades = parser.parse_args()
 
             if AccountsModel.find_by_username(username):
@@ -121,12 +121,11 @@ class Accounts(Resource):
 
 
 class AccountsList(Resource):
-    @auth.login_required(role='admin')
     def get(self):
         acc = AccountsModel.retrieveAllAccounts(self)  # TO TEST
 
         container_accounts = []
         for a in acc:
-            container_accounts.append(a.json())
+            container_accounts.append(a.jsonAllAccount())
 
         return {'accounts': container_accounts}, 200
