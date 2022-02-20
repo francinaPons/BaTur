@@ -45,38 +45,59 @@
         description: "",
         city: "",
         options: [
-        { value: null, text: 'Selecciona una ciudad' }
-      ]
+          { value: null, text: 'Selecciona una ciudad' }
+        ],
+        selected: null,
+        userDetailsMap: {}
 
       }
-    },mounted() {
-    const url = 'http://127.0.0.1:80/cities'
-    this.$axios.get(url)
-        .then((response) => {
-          console.log(response)
-          if (response) {
-            if (response.status === 200) {
-              for (let i = 0; i < response.data.length; i++) {
-                console.log(response.data[i])
-                this.options.push(response.data[i].city_name)
+    },
+    mounted() {
+      const url = 'http://127.0.0.1:80/cities'
+      this.$axios.get(url)
+          .then((response) => {
+            console.log(response)
+            if (response) {
+              if (response.status === 200) {
+                for (let i = 0; i < response.data.length; i++) {
+                  console.log(response.data[i])
+                  this.options.push(response.data[i].city_name)
+                }
+              } else {
+                console.log('resposta:', response.data.data)
               }
-            } else {
-              console.log('resposta:', response.data.data)
             }
-          }
-        })
-    .catch((err) => {
-      console.log("error")
-    })
+          })
+      .catch((err) => {
+        console.log("error")
+      })
   },
     methods:{
-      submit(){
-        //TODO : FER POST FRANCI :)
+      submit() {
+        /*
+        const url = 'http://127.0.0.1:80/account'
+        this.$axios.get(url)
+          .then((response) => {
+            console.log(response)
+            if (response) {
+              if (response.status === 200) {
+                this.items = response.data.baturs;
+                console.log("S'ha guardat correctament")
+              } else {
+                console.log('resposta:', response.data.data)
+              }
+            }
+          })
+          .catch((err) => {
+            console.log("error")
+          })
+         */
       }
     }
   }
 </script>
 
 <style>
+   @import 'static/css/global.css';
 
 </style>

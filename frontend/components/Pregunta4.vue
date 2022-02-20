@@ -34,7 +34,7 @@ export default {
     },
   methods:{
       check(){
-        this.$emit('respuestaPregunta4', this.selected)
+        this.$emit('respuestaPregunta4', this.selected[0])
         console.log(this.selected)
       }
   }

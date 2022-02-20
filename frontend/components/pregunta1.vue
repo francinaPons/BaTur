@@ -29,7 +29,7 @@ export default {
 
     data() {
       return {
-        selected: [], // Must be an array reference!
+        selected: [],
         options: [
           { text: 'No/Ez', value: 'no' },
           { text: 'Acepto propinas/Eskupekoak ba', value: 'propina' },
@@ -42,7 +42,7 @@ export default {
     },
   methods:{
       check(){
-        this.$emit('respuestaPregunta1', this.selected)
+        this.$emit('respuestaPregunta1', this.selected[0])
         console.log(this.selected)
       }
   }
