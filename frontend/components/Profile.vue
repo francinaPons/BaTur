@@ -27,7 +27,8 @@
     </b-col>
     <b-col>
       <Baturs v-if="option === 'batur'" ></Baturs>
-      <Ajustes v-if="option === 'ajustes'" :id_user="id_user" :username="username"></Ajustes>
+      <Ajustes v-if="option === 'ajustes'" :id_user="id_user" :username="username">
+        <font-awesome-icon :icon="['fas', 'comment']"/></Ajustes>
       <Chat v-if="option==='chat'"></Chat>
     </b-col>
     </b-row>

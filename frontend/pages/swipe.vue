@@ -18,8 +18,9 @@
 
         <div style="text-align: center">
         <b-button variant="primary" @click="siguiente">Siguiente</b-button>
-        <font-awesome-icon :icon="['fas', 'comment']"/>
-          <b-button variant="primary" @click="goProfile">Chat</b-button>
+
+          <b-button variant="primary" @click="goProfile">Chat
+          <font-awesome-icon :icon="['fas', 'comment']"/></b-button>
         </div>
       </b-card>
     </section>
@@ -33,6 +34,9 @@
       </div>
 
       </div>
+    </b-col>
+    <b-col class="container w-75" style="min-height: 0px">
+      <b-img :src="image_url" fluid alt="Responsive image"></b-img>
     </b-col>
     </b-row>
 
@@ -53,6 +57,7 @@ import Baturs from "~/pages/baturs";
             city: "",
             mail: "",
           },
+          image_url: "",
           listUsers: {},
           i: 0,
           decodedStr: '',
@@ -96,12 +101,33 @@ import Baturs from "~/pages/baturs";
               console.log("error")
             })
         },
+        getImageBatur(image) {
+          const url = 'http://127.0.0.1:80/POISIMG/' + image
+          this.$axios.get(url)
+            .then((response) => {
+              console.log(response)
+              if (response) {
+                if (response.status === 200) {
+                  let aux = response.data.picture_url.split("/")[3]
+                  // let aux = 'http://esphoto360x360.mnstatic.com/443f1a5c2cc9eaa4302063734e93390c'.split("/")[3]
+                  let sl1 = aux.slice(0,2)
+                  let sl2 = aux.slice(2,4)
+                  console.log(sl1 + ' ' + sl2)
+                  console.log(aux)
+                  this.image_url = 'https://imgs-akamai.mnstatic.com/' + sl1 + '/' + sl2 + '/' + aux + '.jpg'
+                  console.log(response)
+                }
+              }
+            })
+            .catch((err) => {
+              console.log("error")
+            })
+        },
         getBatursUser(id) {
           let url = 'http://127.0.0.1:80/batur/' + 0
           if (id) {
             url = 'http://127.0.0.1:80/batur/' + id
           }
-
           this.$axios.get(url)
             .then((response) => {
               console.log(response)
@@ -116,6 +142,7 @@ import Baturs from "~/pages/baturs";
                       "Categoria": response.data.baturs[i].subcateogry
                     }
                     this.batur.push(item)
+                    this.getImageBatur(item.Localización)
                   }
                 } else {
                   console.log('resposta:', response.data.data)

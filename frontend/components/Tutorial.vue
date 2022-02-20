@@ -138,7 +138,7 @@ export default {
     background-color: #0A084F;
     color: white;
     padding: 26px;
-    border-radius: 15px
+    border-radius: 15px;
 }
 
 </style>

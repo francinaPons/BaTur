@@ -5,7 +5,7 @@
 
     <b-form-select v-model="selected" :options="options" size="sm" @change="getCityId"></b-form-select>
     <div>
-      <h6>¿Qué punto de interés quieres visitar?/??????</h6>
+      <h6>¿Qué punto de interés quieres visitar?/Zer nahi duzu bisitatu?</h6>
     <b-form-select v-model="selected2" v-if="selected" :options="options2" size="sm" ></b-form-select>
 
     </div>
