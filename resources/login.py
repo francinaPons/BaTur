@@ -30,4 +30,4 @@ class Login(Resource):
             return {'message': "Contrasenya incorrecta"}, 400
 
         token = account.generate_auth_token()
-        return {'token': token.decode('ascii')}, 200
+        return {'token': token.decode('ascii'), "id" : account.id}, 200
