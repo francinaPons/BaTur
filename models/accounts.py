@@ -11,6 +11,15 @@ auth = HTTPBasicAuth()
 class AccountsModel(db.Model):
     __tablename__ = 'accounts'
 
+    id = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(), nullable=False)
+    mail = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String(), nullable=False)
+    city = db.Column(db.String(), nullable=False)
+    image = db.Column(db.String(), nullable=False) # todo bulb
+
+
+
     username = db.Column(db.String(30), primary_key=True, unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
     # 0 not admin/ 1 is admin
@@ -38,6 +47,10 @@ class AccountsModel(db.Model):
             return AccountsModel.query.filter_by(username=username).first()
         except:
              raise Exception("There was a problem finding the username")
+
+
+    def find_by_id(id):
+        return AccountsModel.query.filter_by(id=id).first()
 
 
     def delete_by_username(username):

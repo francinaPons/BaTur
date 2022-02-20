@@ -1,7 +1,17 @@
 from flask_restful import Resource, Api, reqparse
+from sqlalchemy import types
+
 from models.accounts import AccountsModel
 from models.accounts import auth
 
+
+class AccountId(Resource):
+    def get(self, id):
+        try:
+            account = AccountsModel.find_by_id(id).json()
+        except Exception as e:
+            return {'message': "Usuario no econtrado"}, 400
+        return {'account': account}, 200
 
 class Accounts(Resource):
     def get(self, username):
@@ -51,6 +61,7 @@ class Accounts(Resource):
             parser.add_argument('username', type=str)
             parser.add_argument('password', type=str)
             parser.add_argument('is_admin')
+            parser.add_argument('image', type=types.BLOB)
             dades = parser.parse_args()
 
             if AccountsModel.find_by_username(username):

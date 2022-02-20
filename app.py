@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
-from resources.accounts import Accounts, AccountsList
+from resources.accounts import Accounts, AccountsList, AccountId
 from resources.activity import Activity, ActivityList
 from resources.batur import Batur
 from resources.cities import CityList, City
@@ -57,6 +57,7 @@ def main_window():
 
 api.add_resource(Login, '/login')
 api.add_resource(Accounts, '/account/<string:username>', '/account')
+api.add_resource(AccountId, '/accountId/<int:id>')
 api.add_resource(Activity, '/activity/<int:id>')
 api.add_resource(ActivityList, '/activities')
 api.add_resource(AccountsList, '/accounts')
