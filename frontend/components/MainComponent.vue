@@ -1,14 +1,18 @@
 <!-- Please remove this file from your project -->
 <template>
-
+  <div>
+     <b-button style="float: right" @click="goProfile">
+      PERFIL
+    </b-button>
 
   <section class="section login">
+    <h1 style="text-align: center">BATUR</h1>
     <div class="container">
+
+
       <div class="columns">
         <div class="column is-4 is-offset-4">
-          <div id="imagesMarcaId" style="margin-top:27px;margin-bottom:50px">
-            <b-img id="marcaImageId" src="~/static/batur.png" />
-          </div>
+
           <preguntas v-if="initialComponent" @initialComponent="onClickChild"></preguntas>
 
           <pregunta1 v-if="!initialComponent && respuestaPregunta1===null" @respuestaPregunta1="onClickPregunta1"></pregunta1>
@@ -23,6 +27,22 @@
           @respuestaPregunta3="onClickPregunta3"> </Pregunta3>
 
 
+          <Pregunta4 v-if="respuestaPregunta3!==null && respuestaPregunta4===null"
+          @respuestaPregunta4="onClickPregunta4"> </Pregunta4>
+
+          <div v-if="respuestaPregunta4!==null"   >
+            <h4>Precio: {{respuestaPregunta1}}</h4>
+            <h4>Ciudad: {{respuestaPregunta2city}}</h4>
+            <h4>Descripción: {{respuestaPregunta2text}}</h4>
+            <h4>Disponibilidad: {{respuestaPregunta3}}</h4>
+            <h4>Actividad: {{respuestaPregunta4}}</h4>
+
+            <b-button @click="terminarBatur">
+              Terminar
+            </b-button>
+
+          </div>
+
 
 
 
@@ -30,8 +50,10 @@
 
         </div>
       </div>
+
     </div>
   </section>
+  </div>
 </template>
 
 
@@ -55,6 +77,7 @@ export default {
       respuestaPregunta2city: null,
       respuestaPregunta2text: null,
       respuestaPregunta3: null,
+      respuestaPregunta4: null,
 
     }
   },
@@ -75,6 +98,9 @@ export default {
     onClickPregunta3(value){
       this.respuestaPregunta3 = value;
     },
+    onClickPregunta4(value){
+      this.respuestaPregunta4 = value;
+    },
     ofrecer1() {
       const url = 'http://127.0.0.1:80/login'
       this.ofrecer = true;
@@ -84,6 +110,13 @@ export default {
       const url = 'http://127.0.0.1:80/login'
 
       this.initialComponent = false;
+    },
+    terminarBatur(){
+      //TODO: AFEGIR TOTES LES VARS A BBDD
+      this.$router.push('/about')
+    },
+    goProfile(){
+      this.$router.push('/about')
     },
     getActivities() {
       console.log("Jaskdljf")
