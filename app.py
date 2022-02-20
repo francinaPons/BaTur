@@ -8,6 +8,7 @@ from resources.accounts import Accounts, AccountsList, AccountId
 from resources.activity import Activity, ActivityList
 from resources.batur import Batur
 from resources.cities import CityList, City
+from resources.subcategories import SubcategoryList
 from resources.weather import Weather
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -67,9 +68,10 @@ api.add_resource(AccountsList, '/accounts')
 api.add_resource(CityList, '/cities')
 api.add_resource(City, '/city/<int:city_id>', '/city/<string:city_name>')
 api.add_resource(Weather, '/weather/<string:region>/<string:date1>/<string:date2>')
-api.add_resource(Batur, '/batur/<int:user_id>')
+api.add_resource(Batur, '/batur', '/batur/<int:user_id>')
 api.add_resource(POISList, '/POIS')
 api.add_resource(POISSubcategoryList, '/POIS/<string:subcategory_id>')
+api.add_resource(SubcategoryList, '/subcategories')
 
 if __name__ == '__main__':
   app.run(debug=True)

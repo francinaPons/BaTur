@@ -12,13 +12,12 @@ class Batur(Resource):
             return {'message': "Preguntas no encontradas"}, 400
         return {'baturs': baturs}, 200
 
-    def post(self, user_id):
+    def post(self):
         parser = reqparse.RequestParser()  # create parameters parser from request
 
         # define al input parameters need and its type
         parser.add_argument('id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('user_id', type=int, required=True, help="Se requiere especificar el id del usuario")
-        parser.add_argument('host', type=bool, required=True, help="Se requiere especificar si es host")
         parser.add_argument('charge', type=int, required=True, help="Se requiere especificar si se cargan gastos")
         parser.add_argument('location', type=str, required=True, help="Se requiere especificar la localización")
         parser.add_argument('description', type=str, required=True, help="Se requiere especificar una descripción")
@@ -30,8 +29,6 @@ class Batur(Resource):
 
         if data['user_id'] == '' or "":
             return {'message': "Se requiere especificar el id del usuario"}, 400
-        if data['host'] == '' or "":
-            return {'message': "Se requiere especificar si es host"}, 400
         if data['charge'] == '' or "":
             return {'message': "Se requiere especificar si se cargan gastos"}, 400
         if data['location'] == '' or "":
