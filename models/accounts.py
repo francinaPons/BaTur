@@ -16,7 +16,7 @@ class AccountsModel(db.Model):
     mail = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     city = db.Column(db.String(), nullable=False)
-    image = db.Column(db.String(), nullable=False) # todo bulb
+    image = db.Column(db.String(), nullable=False)
 
 
 
