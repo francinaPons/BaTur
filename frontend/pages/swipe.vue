@@ -3,29 +3,27 @@
     <b-col style="max-width: max-content;">
       <section>
       <b-card
-      :title= name
-      img-src="~/static/aitor_surfer.jpeg"
+      :title= currentUser.name
+      :img-src="currentUser.image"
       img-top
       tag="article"
       style="max-width: 20rem;"
       class="mb-2"
     >
         <b-card-text>
-           {{ description }}
+           {{ currentUser.description }}
           <br>
-          <b>{{ city }}</b>
+          <b>{{ currentUser.city }}</b>
         </b-card-text>
 
-        <!--<b-button href="/baturs" variant="primary">Ver mis BaTurs</b-button> -->
         <div style="text-align: center">
-        <b-button variant="primary" >Siguiente</b-button>
+        <b-button variant="primary" @click="siguiente">Siguiente</b-button>
         <b-button variant="primary" >Chat</b-button>
         </div>
       </b-card>
     </section>
     </b-col>
     <b-col>
-     HOLA
     </b-col>
     </b-row>
 
@@ -38,33 +36,51 @@ import Baturs from "~/pages/baturs";
       components: {Baturs},
       data: function () {
         return {
-          name: "",
-          image: "",
-          user_id: 0,
-          description: "",
-          city: "",
-          mail: "",
+          currentUser: {
+            name: "",
+            image: "",
+            user_id: 0,
+            description: '',
+            city: "",
+            mail: "",
+          },
+          listUsers: {},
+          i: 0,
+          decodedStr: '',
           option: null,
-
         }
       },
       mounted() {
-        this.getProfile()
+        this.getListUsers()
+        this.getBatursUser()
       },
       methods: {
-        getProfile() {
-
-          const url = 'http://127.0.0.1:80/accountId/0'
+        getListUsers() {
+          const url = 'http://127.0.0.1:80/accounts'
           this.$axios.get(url)
             .then((response) => {
               console.log(response)
               if (response) {
                 if (response.status === 200) {
-                  // TODO: omplir info de l'usuari
-                  this.name = response.data.account.name
-                  this.description = response.data.account.description
-                  this.city = response.data.account.city
-                  console.log(this.name)
+                  this.listUsers = response.data.accounts
+                  this.currentUser = this.listUsers[0]
+                  console.log(this.currentUser)
+                } else {
+                  console.log('resposta:', response.data.data)
+                }
+              }
+            })
+            .catch((err) => {
+              console.log("error")
+            })
+        },
+        getBatursUser(id) {
+          const url = 'http://127.0.0.1:80/batur/0'
+          this.$axios.get(url)
+            .then((response) => {
+              console.log(response)
+              if (response) {
+                if (response.status === 200) {
 
                 } else {
                   console.log('resposta:', response.data.data)
@@ -77,9 +93,15 @@ import Baturs from "~/pages/baturs";
         },
         select_options(option){
           this.option = option;
-        }
+        },
+        siguiente() {
+        this.i += 1
+        this.currentUser = this.listUsers[this.i]
 
       }
+
+      },
+
     }
 </script>
 
