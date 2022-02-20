@@ -18,12 +18,19 @@
 
         <div style="text-align: center">
         <b-button variant="primary" @click="siguiente">Siguiente</b-button>
-        <b-button variant="primary" >Chat</b-button>
+        <font-awesome-icon :icon="['fas', 'comment']"/>
+          <b-button variant="primary" >Chat</b-button>
         </div>
       </b-card>
     </section>
     </b-col>
     <b-col>
+      <div v-for="values in batur">
+        <div v-for="(name, value) in values">
+          <h6>{{ name }}: {{ value}}</h6>
+      </div>
+
+      </div>
     </b-col>
     </b-row>
 
@@ -48,6 +55,10 @@ import Baturs from "~/pages/baturs";
           i: 0,
           decodedStr: '',
           option: null,
+          batur: [
+            { message: 'Foo' },
+            { message: 'Bar' }
+          ]
         }
       },
       mounted() {
@@ -81,7 +92,7 @@ import Baturs from "~/pages/baturs";
               console.log(response)
               if (response) {
                 if (response.status === 200) {
-
+                  this.batur = response.data.baturs
                 } else {
                   console.log('resposta:', response.data.data)
                 }
@@ -97,6 +108,7 @@ import Baturs from "~/pages/baturs";
         siguiente() {
         this.i += 1
         this.currentUser = this.listUsers[this.i]
+        this.getBatursUser(this.i)
 
       }
 
