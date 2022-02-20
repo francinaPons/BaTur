@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_restful import Resource, Api, reqparse
 
 from resources import POIS
-from resources.POIS import POISList, POISSubcategoryList, POISCityList
+from resources.POIS import POISList, POISSubcategoryList, POISCityList, POISImage
 from resources.accounts import Accounts, AccountsList, AccountId
 from resources.activity import Activity, ActivityList
 from resources.batur import Batur
@@ -67,6 +67,7 @@ api.add_resource(City, '/city/<int:city_id>', '/city/<string:city_name>')
 api.add_resource(Weather, '/weather/<string:date1>/<string:date2>')
 api.add_resource(Batur, '/batur', '/batur/<int:user_id>')
 api.add_resource(POISList, '/POIS')
+api.add_resource(POISImage, '/POISIMG/<string:name>')
 api.add_resource(POISSubcategoryList, '/POIS/<string:subcategory_id>')
 api.add_resource(POISCityList, '/POISCITY/<string:city_id>')
 api.add_resource(SubcategoryList, '/subcategories')
