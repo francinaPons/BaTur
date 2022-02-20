@@ -35,7 +35,7 @@
 
       </div>
     </b-col>
-    <b-col class="container w-75" style="min-height: 0px">
+    <b-col class="container w-75" style="min-height: 0px; align-items: flex-start">
       <b-img :src="image_url" fluid alt="Responsive image"></b-img>
     </b-col>
     </b-row>
