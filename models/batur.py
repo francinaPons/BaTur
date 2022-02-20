@@ -16,8 +16,8 @@ class BaturModel(db.Model):
     availability = db.Column(db.String(), nullable=False)
     subcategory = db.Column(db.String(), nullable=False)
 
-    def __init__(self, id, user_id, charge, location, description, availability, subcategory):
-        self.id = id
+    def __init__(self, user_id, charge, location, description, availability, subcategory):
+        self.id = 0
         self.user_id = user_id
         self.charge = charge
         self.location = location
@@ -38,12 +38,12 @@ class BaturModel(db.Model):
         # return json.loads(json.dumps(self, default=lambda o: {'id': self.id}))
 
     def save_to_db(self):
-        try:# saving data
-            db.session.add(self)
-            db.session.commit()
-            return {"message": "Ok"}, 200
-        except:
-            raise Exception("There was a problem  saving on database")
+        # try:# saving data
+        db.session.add(self)
+        db.session.commit()
+        return {"message": "Ok"}, 200
+        # except:
+        #     raise Exception("There was a problem  saving on database")
 
     def find_by_user_id(self, user_id):
         res = [i.json() for i in BaturModel.query.filter_by(user_id=user_id).all()]

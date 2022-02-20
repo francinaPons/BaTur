@@ -24,9 +24,9 @@ class Batur(Resource):
         parser.add_argument('availability', type=str, required=True, help="Se requiere especificar la disponibilidad")
         parser.add_argument('subcategory', type=str, required=True, help="Se requiere especificar la subcategoría")
 
-
         data = parser.parse_args()
 
+        data['id'] = 2
         if data['user_id'] == '' or "":
             return {'message': "Se requiere especificar el id del usuario"}, 400
         if data['charge'] == '' or "":
@@ -40,7 +40,8 @@ class Batur(Resource):
         if data['subcategory'] == '' or "":
             return {'message': "Se requiere especificar la subcategoría"}, 400
 
-        batur = BaturModel.save_to_db(self)
+        print(type(data))
+        batur = BaturModel.save_to_db(self, data)
         return {'batur': batur.json()}, 200
 
 
