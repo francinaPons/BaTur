@@ -1,4 +1,5 @@
 <template>
+  <div>
   <b-row class="background_default">
     <b-col style="max-width: max-content;">
       <section>
@@ -26,10 +27,12 @@
     </b-col>
     <b-col>
       <Baturs v-if="option === 'batur'" ></Baturs>
-      <Ajustes v-if="option === 'ajustes'" :id_user="id_user"></Ajustes>
+      <Ajustes v-if="option === 'ajustes'" :id_user="id_user" :username="username"></Ajustes>
       <Chat v-if="option==='chat'"></Chat>
     </b-col>
     </b-row>
+
+    </div>
 
 </template>
 
@@ -48,11 +51,18 @@
           city: "",
           mail: "",
           option: null,
+          username:""
 
         }
       },
       mounted() {
-        this.id_user = this.$route.params['data'];
+        if (this.$route.params['data'].user_id){
+          this.id_user = this.$route.params['data'].user_id
+          this.option = 'chat'
+        }
+        else {
+          this.id_user = this.$route.params['data'];
+        }
         this.getProfile()
       },
       methods: {
@@ -60,7 +70,7 @@
           this.$router.push('/')
         },
         getProfile() {
-
+          console.log(this.id_user)
           const url = 'http://127.0.0.1:80/accountId/' + this.id_user;
           this.$axios.get(url)
             .then((response) => {
@@ -71,6 +81,7 @@
                   this.name = response.data.account.name
                   this.description = response.data.account.description
                   this.city = response.data.account.city
+                  this.username = response.data.account.username
                   console.log(this.name)
 
                 } else {

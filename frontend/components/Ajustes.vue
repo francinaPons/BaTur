@@ -39,10 +39,11 @@
 
 <script>
   export default {
-    props: ['id_user'],
+    props: ['id_user', 'username'],
     data() {
       return {
         id_user: this.id_user,
+        username: this.username,
         name: "",
         description: "",
         city: "",
@@ -55,7 +56,6 @@
       }
     },
     mounted() {
-      console.log("afhsjkdf")
       console.log(this.id_user)
 
       const url = 'http://127.0.0.1:80/cities'
@@ -78,13 +78,13 @@
   },
     methods:{
       submit() {
-        const url = 'http://127.0.0.1:80/account'
+        const url = 'http://127.0.0.1:80/account/' + this.username
         const params = {
           name: this.name,
           city: this.city,
           description: this.description
         }
-        this.$axios.put(url, params)
+        this.$axios.post(url, params)
           .then((response) => {
             if (response) {
               if (response.status === 200) {

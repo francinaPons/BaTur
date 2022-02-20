@@ -67,7 +67,6 @@ import Baturs from "~/pages/baturs";
       },
       methods: {
         goProfile() {
-          console.log("okfjlsdf")
           console.log(this.currentUser.id)
           let items = {
             user_id: this.currentUser.id,
