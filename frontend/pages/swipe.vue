@@ -102,7 +102,7 @@ import Baturs from "~/pages/baturs";
                       "Disponibilidad": response.data.baturs[i].availability,
                       "Precio": response.data.baturs[i].charge,
                       "Localización": response.data.baturs[i].location,
-                      "Categoria": response.data.baturs[i].category
+                      "Categoria": response.data.baturs[i].subcateogry
                     }
                     this.batur.push(item)
                   }
