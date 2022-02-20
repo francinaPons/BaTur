@@ -21,6 +21,7 @@ class Accounts(Resource):
             return {'message': "Usuari no  trobat"}, 400
         return {'account': account}, 200
 
+
     @auth.login_required(role='admin')
     def post(self, id=None):
         try:
@@ -29,6 +30,8 @@ class Accounts(Resource):
             # define al input parameters need and its type
             parser.add_argument('username', type=str, required=True, help="This field cannot be left blanck")
             parser.add_argument('password', type=str)
+
+
 
             dades = parser.parse_args()
             if AccountsModel.find_by_username(dades['username']):
@@ -52,72 +55,26 @@ class Accounts(Resource):
             return {'message': "Usari amb  ['username': {} ] no trobat".format(username)}, 400
         return {'message': "Usari amb ['username': {} ] esborrat correctament".format(username)}, 200
 
-    @auth.login_required(role='admin')
     def put(self, username):
+        parser = reqparse.RequestParser()  # create parameters parser from request
+
+        # define al input parameters need and its type
+        parser.add_argument('name', type=str)
+        parser.add_argument('description', type=str)
+        parser.add_argument('city', type=str)
+
+        dades = parser.parse_args()
         try:
-            parser = reqparse.RequestParser()  # create parameters parser from request
-
-            # define al input parameters need and its type
-            parser.add_argument('username', type=str)
-            parser.add_argument('password', type=str)
-            parser.add_argument('is_admin')
-            parser.add_argument('image', type=str)
-            dades = parser.parse_args()
-
             if AccountsModel.find_by_username(username):
-                """
-                if dades['username']:
-                    if dades['is_admin']:
-                        account.updateData(username=dades['username'],is_admin=dades['is_admin'])
-                    else:
-                        account.updateData(username=account.json()['username'],is_admin=dades['is_admin'])
-
-                account=AccountsModel.find_by_username(username)
-                if dades['username'] and dades['is_admin']:
-                    account.updateData(username=dades['username'],is_admin=dades['is_admin'])
-
-                elif dades['is_admin'] and not dades['username']:
-                    account.updateData(username=username,is_admin=dades['is_admin'])
-
-                elif dades['username'] and not dades['is_admin']:
-                    account.updateData(username=dades['username'],is_admin=account.json()['is_admin'])
-
-                else:
-                    print('is_admin & username won"t change')
-                 """
                 account = AccountsModel.find_by_username(username)
-                try:
-                    if dades['username']:
-                        account.updateUsername(dades['username'])
-                        account.save_to_db()
-                        account = AccountsModel.find_by_username(dades['username'])
-                except:
-                    return {'message': "Usari amb ['username': {} ] no modificat, problema amb username ".format(
-                        username)}, 400
-
-                try:
-                    if dades['is_admin']:
-                        # return {'message': "dades['is_admin']: " + dades['is_admin']}, 400
-                        account.updateRole(dades['is_admin'])
-                except:
-                    return {'message': "Usari amb ['username': {} ] no modificat, problema amb is_admin ".format(
-                        username)}, 400
-
-                try:
-                    if dades['password']:
-                        account.hash_password(dades['password'])
-                except:
-                    return {'message': "Usari amb ['username': {} ] no modificat, problema amb password ".format(
-                        username)}, 400
-
+                account.updateName(dades['name'])
+                account.updateDescription(dades['description'])
+                account.updateCity(dades['city'])
                 account.save_to_db()
-                return {'message': "Usari amb ['username': {} ] modificat correctament".format(username)}, 200
 
-            else:
-                return {'message': "Usari amb  ['username': {} ] no trobat".format(username)}, 400
         except:
-            return {'message': "Usari amb ['username': {} ] no modificat ".format(username)}, 400
-        return {'message': "Petició processada correctament"}, 200
+            return {'message': "El usuario no se ha modificado debido a un error"}, 400
+        return {'message': "Cambio realizado con éxito"}, 200
 
 
 class AccountsList(Resource):

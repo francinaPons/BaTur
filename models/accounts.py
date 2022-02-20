@@ -110,6 +110,21 @@ class AccountsModel(db.Model):
         except:
              raise Exception("There was a problem updating the data  on database")
 
+    def updateName(self, name):
+        try:
+            self.name = name
+        except:
+             raise Exception("There was a problem updating the data  on database")
+    def updateDescription(self, description):
+        try:
+            self.description = description
+        except:
+             raise Exception("There was a problem updating the data  on database")
+    def updateCity(self, city):
+        try:
+            self.city = city
+        except:
+             raise Exception("There was a problem updating the data  on database")
     def updateRole(self, is_admin):
         try:
             self.is_admin = is_admin
