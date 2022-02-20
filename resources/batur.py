@@ -16,7 +16,7 @@ class Batur(Resource):
         parser = reqparse.RequestParser()  # create parameters parser from request
 
         # define al input parameters need and its type
-        parser.add_argument('id', type=int, required=True, help="Se requiere especificar el id del usuario")
+        # parser.add_argument('id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('user_id', type=int, required=True, help="Se requiere especificar el id del usuario")
         parser.add_argument('charge', type=int, required=True, help="Se requiere especificar si se cargan gastos")
         parser.add_argument('location', type=str, required=True, help="Se requiere especificar la localización")

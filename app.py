@@ -17,8 +17,6 @@ from db import db, secret_key
 from resources.login import Login
 
 
-
-app = Flask(__name__)
 app = Flask(__name__,
             static_folder="./frontend/dist/static",
             template_folder="./frontend/dist")
@@ -46,7 +44,6 @@ def home():
   message = {}
   data = {}
 
-  message['message'] = 'Hello World from Flask!'
   data['status'] = 200
   data['data'] = message
 
