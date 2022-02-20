@@ -65,7 +65,12 @@ export default {
             console.log(response)
             if (response) {
               if (response.status === 200) {
-                this.$router.push('/nse')
+                console.log("AAAAAAAAAAAAAA")
+                console.log(response.data.id)
+                this.$router.push({
+                  name: 'nse',
+                  params: {data: response.data.id}
+                })
               } else {
                 console.log('resposta:', response.data.data)
               }

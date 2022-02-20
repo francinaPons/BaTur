@@ -67,6 +67,7 @@ export default {
   components: {Preguntas, NuxtLogo},
   data: function () {
     return {
+      id_user: null,
       username: "",
       password: "",
       error: false,
@@ -81,6 +82,11 @@ export default {
       charge: 0,
 
     }
+  },
+  mounted() {
+    this.id_user = this.$route.params['data'];
+    console.log('Params: ', this.$route.params['data']);
+
   },
   methods: {
     onClickChild (value) {
@@ -113,7 +119,7 @@ export default {
 
       const url = 'http://127.0.0.1:80/batur'
       const params = {
-        user_id: this.user_id,
+        user_id: this.id_user,
         id: this.id,
         charge: this.charge,
         location: this.respuestaPregunta2city,
@@ -137,10 +143,18 @@ export default {
         this.error = "error al iniciar sesion";
       })
 
-      this.$router.push('/about')
+      //this.$router.push('/about')
+      this.$router.push({
+                  name: 'about',
+                  params: {data: this.id_user}
+                })
     },
     goProfile(){
-      this.$router.push('/about')
+      //this.$router.push('/about')
+      this.$router.push({
+                  name: 'about',
+                  params: {data: this.id_user}
+                })
     },
   }
 }
