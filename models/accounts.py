@@ -32,6 +32,17 @@ class AccountsModel(db.Model):
     def json(self):
         return json.loads(json.dumps(self, default=lambda o: {'username': self.username, 'is_admin': self.is_admin}))
 
+    def jsonAllAccount(self):
+        return json.loads(json.dumps(self, default=lambda o:
+        {'username': self.username,
+         'image': self.image,
+         'id': self.id,
+         'name': self.name,
+         'mail': self.mail,
+         'description': self.description,
+         'city': self.city
+         }))
+
     def hash_password(self, password):
 
         self.password = pwd_context.encrypt(password)

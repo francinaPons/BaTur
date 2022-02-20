@@ -8,7 +8,7 @@ from models.accounts import auth
 class AccountId(Resource):
     def get(self, id):
         try:
-            account = AccountsModel.find_by_id(id).json()
+            account = AccountsModel.find_by_id(id).jsonAllAccount()
         except Exception as e:
             return {'message': "Usuario no econtrado"}, 400
         return {'account': account}, 200
