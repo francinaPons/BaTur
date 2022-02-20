@@ -23,6 +23,8 @@ class Batur(Resource):
         parser.add_argument('location', type=str, required=True, help="Se requiere especificar la localización")
         parser.add_argument('description', type=str, required=True, help="Se requiere especificar una descripción")
         parser.add_argument('availability', type=str, required=True, help="Se requiere especificar la disponibilidad")
+        parser.add_argument('subcategory', type=str, required=True, help="Se requiere especificar la subcategoría")
+
 
         data = parser.parse_args()
 
@@ -38,6 +40,8 @@ class Batur(Resource):
             return {'message': "Se requiere especificar una descripció"}, 400
         if data['availability'] == '' or "":
             return {'message': "Se requiere especificar la disponibilidad"}, 400
+        if data['subcategory'] == '' or "":
+            return {'message': "Se requiere especificar la subcategoría"}, 400
 
         batur = BaturModel.save_to_db(self)
         return {'batur': batur.json()}, 200

@@ -15,8 +15,9 @@ class BaturModel(db.Model):
     location = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     availability = db.Column(db.Integer(), nullable=False)
+    subcategory = db.Column(db.String(), nullable=False)
 
-    def __init__(self, id, user_id, host, charge, location, description, availability):
+    def __init__(self, id, user_id, host, charge, location, description, availability, subcategory):
         self.id = id
         self.user_id = user_id
         self.host = host
@@ -24,6 +25,7 @@ class BaturModel(db.Model):
         self.location = location
         self.description = description
         self.availability = availability
+        self.subcategory = subcategory
 
     def json(self):
         return json.loads(json.dumps(self, default=lambda o: {
@@ -33,7 +35,8 @@ class BaturModel(db.Model):
             'charge': self.charge,
             'location': self.location,
             'description': self.description,
-            'availability': self.availability
+            'availability': self.availability,
+            'subcateogry' : self.subcategory
         }))
         # return json.loads(json.dumps(self, default=lambda o: {'id': self.id}))
 
